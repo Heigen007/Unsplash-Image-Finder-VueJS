@@ -49,7 +49,7 @@ export default {
             this.photoArray = JSON.parse(localStorage.getItem('favouritePhotoes')) || [];
         },
         async getRandomPhotoes(){
-            const response = await axios.get(this.unsplashURL + '/photos/random?count=2', {
+            const response = await axios.get(this.unsplashURL + '/photos/random?count=8', {
                 headers: {
                     Authorization: this.unsplashAccessKey,
                 },
@@ -57,7 +57,7 @@ export default {
             this.photoArray = response.data;
         },
         async searchPhotosByString(newSearch){
-            const response = await axios.get(this.unsplashURL + `/search/photos?query=${newSearch}&per_page=2`, {
+            const response = await axios.get(this.unsplashURL + `/search/photos?query=${newSearch}&per_page=8`, {
                 headers: {
                     Authorization: this.unsplashAccessKey,
                 },
@@ -71,7 +71,7 @@ export default {
                 return this.photoArray.map((photo) => {
                     return {
                         id: photo.id,
-                        url: photo.url || photo.urls?.full
+                        url: photo.url || photo.urls?.regular
                     }
                 })
             }

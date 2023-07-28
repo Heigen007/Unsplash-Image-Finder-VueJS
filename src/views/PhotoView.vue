@@ -4,7 +4,7 @@
         <!-- Информация о создателе картины -->
         <div class="row">
             <div class="col-md-6 col-6">
-                <div class="d-flex owner-info">
+                <div class="d-flex owner-info" @click="openOwnerURL">
                     <img :src="photo.user?.profile_image?.medium" alt="Owner's Photo" class="rounded border border-white border-1 mr-3" style="width: 40px; height: 40px;">
                     <div class="ms-2 d-flex flex-column align-items-start">
                         <h6 class="mb-0 text-white text-start">{{ photo.user?.name }}</h6>
@@ -27,12 +27,12 @@
 
         <!-- Главное фото -->
         <div class="mt-4">
-            <img :src="photo.urls?.full" alt="Photo" class="img-fluid rounded">
+            <img :src="photo.urls?.regular" alt="Photo" class="img-fluid rounded">
         </div>
 
         <!-- Оповещение о добавлении фото в избранное -->
         <SuccesfullAlert v-if="showAlert" @close="showAlert = false">
-            Фото было добавлено в избранное
+            {{ alertMessage }}
         </SuccesfullAlert>
     </div>
 </template>
@@ -43,11 +43,12 @@ import SuccesfullAlert from '../components/SuccesfullAlert.vue';
 
 export default {
     name: "PhotoView",
-    inject: ['unsplashAccessKey'],
+    inject: ['unsplashURL', 'unsplashAccessKey'],
     data: function(){
         return {
             photo: {},
             showAlert: false,
+            alertMessage: ''
         }
     },
     created() {
@@ -58,7 +59,7 @@ export default {
     },
     methods: {
         async getPhotoById(photoId){
-            const response = await axios.get('https://api.unsplash.com/photos/' + photoId, {
+            const response = await axios.get(this.unsplashURL + '/photos/' + photoId, {
                 headers: {
                     Authorization: this.unsplashAccessKey,
                 },
@@ -70,18 +71,28 @@ export default {
 
             if(favouritePhotoes.some(photo => photo.id === this.photo.id)){
                 favouritePhotoes = favouritePhotoes.filter(photo => photo.id !== this.photo.id);
+                localStorage.setItem('favouritePhotoes', JSON.stringify(favouritePhotoes));
+                this.alertMessage = 'Фото было удалено из избранного'
+                this.showAlert = true;
+                return;
             }
             
             favouritePhotoes.unshift({
                 id: this.photo.id,
-                url: this.photo.links.download
+                url: this.photo.urls.regular
             });
             localStorage.setItem('favouritePhotoes', JSON.stringify(favouritePhotoes));
+            this.alertMessage = 'Фото было добавлено в избранное';
             this.showAlert = true;
         },
         downloadPhoto() {
-            window.open(this.photo.links.download, '_blank');
+            window.open(this.photo.urls.regular, '_blank');
         },
+        openOwnerURL() {
+            if(!this.photo.user.portfolio_url)
+                return;
+            window.open(this.photo.user.portfolio_url, '_blank');
+        }
     }
 };
 </script>

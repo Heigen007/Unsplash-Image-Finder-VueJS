@@ -1,15 +1,18 @@
 <template>
     <HeaderComponent />
     <router-view />
+    <ScrollToTopButton />
 </template>
 
 <script>
 import HeaderComponent from "./components/HeaderComponent";
+import ScrollToTopButton from './components/ScrollToTopButton.vue';
 
 export default {
     name: "App",
     components: {
-        HeaderComponent
+        HeaderComponent,
+        ScrollToTopButton
     },
     provide() {
         // глобальные конфигурационные переменные
