@@ -2,10 +2,15 @@
     <div class="py-5">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-3">
-                <div v-for="(photo, index) in formattedPhotoArray" :key="index" class="col">
-                    <RouterLink :to="{ name: 'PhotoView', params: { id: photo.id } }">
-                        <PhotoComponent :url="photo.url" />
-                    </RouterLink>
+                <!-- Show photos if photoArray has photos, else show a message -->
+                    <div v-for="(photo, index) in formattedPhotoArray" :key="index" class="col">
+                        <RouterLink :to="{ name: 'PhotoView', params: { id: photo.id } }">
+                            <PhotoComponent :url="photo.url" />
+                        </RouterLink>
+                    </div>
+                <div v-if="!photoArray.length">
+                    <p v-if="errorEmptySearch || isFavouritesPhotoes">Nothing was found.</p>
+                    <p v-else>Loading...</p>
                 </div>
             </div>
         </div>
@@ -22,7 +27,8 @@ export default {
     props: ['currentSearch', 'isFavouritesPhotoes'],
     data: function(){
         return {
-            photoArray: []
+            photoArray: [],
+            errorEmptySearch: false
         }
     },
     components: {
@@ -57,12 +63,16 @@ export default {
             this.photoArray = response.data;
         },
         async searchPhotosByString(newSearch){
+            this.errorEmptySearch = false;
             const response = await axios.get(this.unsplashURL + `/search/photos?query=${newSearch}&per_page=8`, {
                 headers: {
                     Authorization: this.unsplashAccessKey,
                 },
             });
             this.photoArray = response.data.results;
+            if(!response.data.results.length){
+                this.errorEmptySearch = true;
+            }
         }
     },
     computed: {
