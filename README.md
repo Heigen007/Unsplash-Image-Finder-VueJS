@@ -1,4 +1,5 @@
-# app
+# Unsplash-Image-Finder-VueJS
+Interface for searching images
 
 ## Project setup
 ```
