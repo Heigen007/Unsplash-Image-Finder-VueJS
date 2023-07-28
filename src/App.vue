@@ -18,7 +18,7 @@ export default {
         // глобальные конфигурационные переменные
         return {
             unsplashURL: 'https://api.unsplash.com',
-            unsplashAccessKey: process.env.unsplashAccessKey
+            unsplashAccessKey: process.env.VUE_APP_UNSPLASH_ACCESS_KEY
         }
     }
 };
