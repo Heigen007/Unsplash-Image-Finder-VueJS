@@ -1,11 +1,12 @@
 <template>
-<main>
-    <HomePageSearchBlock 
-        :currentSearch="searchText"
-        @update:currentSearch="newValue => currentSearch = newValue"
-    />
-    <PhotoGallery :currentSearch="currentSearch" />
-</main>
+    <main>
+        <HomePageSearchBlock 
+            :currentSearch="searchText"
+            @update:currentSearch="newValue => currentSearch = newValue"
+            class="mt-80"
+        />
+        <PhotoGallery :currentSearch="currentSearch" :isFavouritesPhotoes="false" />
+    </main>
 </template>
 
 <script>

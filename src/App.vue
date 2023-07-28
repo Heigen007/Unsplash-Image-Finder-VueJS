@@ -10,6 +10,13 @@ export default {
     name: "App",
     components: {
         HeaderComponent
+    },
+    provide() {
+        // глобальные конфигурационные переменные
+        return {
+            unsplashURL: 'https://api.unsplash.com',
+            unsplashAccessKey: 'Client-ID YOUR_KEY'
+        }
     }
 };
 </script>
@@ -21,5 +28,13 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+}
+
+.btn-warning{
+    background-color: #fff200;
+}
+
+.mt-80 {
+    margin-top: 80px;
 }
 </style>
