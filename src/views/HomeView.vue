@@ -3,7 +3,7 @@
         <HomePageSearchBlock 
             :currentSearch="searchText"
             @update:currentSearch="newValue => currentSearch = newValue"
-            class="mt-80"
+            class="custom-mt-80"
         />
         <PhotoGallery :currentSearch="currentSearch" :isFavouritesPhotoes="false" />
     </main>

@@ -51,7 +51,7 @@ export default {
         async getRandomPhotoes(){
             const response = await axios.get(this.unsplashURL + '/photos/random?count=2', {
                 headers: {
-                    Authorization: unsplashAccessKey,
+                    Authorization: this.unsplashAccessKey,
                 },
             });
             this.photoArray = response.data;
@@ -59,7 +59,7 @@ export default {
         async searchPhotosByString(newSearch){
             const response = await axios.get(this.unsplashURL + `/search/photos?query=${newSearch}&per_page=2`, {
                 headers: {
-                    Authorization: unsplashAccessKey,
+                    Authorization: this.unsplashAccessKey,
                 },
             });
             this.photoArray = response.data.results;

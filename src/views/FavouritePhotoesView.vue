@@ -1,5 +1,5 @@
 <template>
-    <div class="py-5 mt-80">
+    <div class="py-5 custom-mt-80">
         <h1>
             <strong>Избранное</strong>
         </h1>

@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-image d-flex align-items-center" style="background-image: url('background.png'); height: 260px">
+    <section class="bg-image d-flex align-items-center search-block-bg-image">
         <div class="container py-lg-5">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8">
@@ -28,12 +28,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .focus-border:focus {
     outline: none;
     box-shadow: none;
 }
-@media (max-width: 576px) {
+.search-block-bg-image {
+    background: url('../assets/mainPageBackground.png');
+    height: 260px;
+    background-size: cover;
+}
+
+@media (max-width: 768px) {
     .form-control-lg {
         height: 50px;
         font-size: 18px;

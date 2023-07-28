@@ -15,7 +15,7 @@ export default {
         // глобальные конфигурационные переменные
         return {
             unsplashURL: 'https://api.unsplash.com',
-            unsplashAccessKey: 'Client-ID YOUR_KEY'
+            unsplashAccessKey: process.env.unsplashAccessKey
         }
     }
 };
@@ -34,7 +34,7 @@ export default {
     background-color: #fff200;
 }
 
-.mt-80 {
+.custom-mt-80 {
     margin-top: 80px;
 }
 </style>
