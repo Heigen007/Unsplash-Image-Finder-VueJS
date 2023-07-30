@@ -31,7 +31,7 @@
     };
 </script>
   
-<style>
+<style scoped>
     #scrollToTopBtn {
         position: fixed;
         bottom: 30px;

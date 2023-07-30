@@ -30,7 +30,7 @@
     </header>
 </template>
 
-<style>
+<style scoped>
 .logo-img {
     height: 55px;
     width: auto;
