@@ -9,7 +9,7 @@
             </div>
             <!-- Action buttons on the right side -->
             <div class="custom-header-part">
-                <RouterLink :to="{ name: 'HomeView'}">
+                <RouterLink :to="{ name: 'HomeView'}" v-if="$route.path !== '/'">
                     <button class="btn btn-primary border-0 bg-black">
                         <i class="bi bi-search"></i>
                         <label class="ms-1 label-to-be-hidden">
