@@ -9,8 +9,8 @@
                         </RouterLink>
                     </div>
                 <div v-if="!photoArray.length">
-                    <p v-if="errorEmptySearch || isFavouritesPhotoes">Nothing was found.</p>
-                    <p v-else>Loading...</p>
+                    <p v-if="errorEmptySearch || isFavouritesPhotoes">По Вашему запросу ничего не найдено.</p>
+                    <p v-else>Загрузка...</p>
                 </div>
             </div>
         </div>

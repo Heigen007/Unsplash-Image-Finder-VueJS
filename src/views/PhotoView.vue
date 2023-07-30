@@ -19,7 +19,7 @@
                     </button>
                     <button class="btn btn-warning btn-md ms-2" @click="downloadPhoto">
                         <i class="bi bi-download"></i>
-                        <label class="ms-1 custom-download-label">Download</label>
+                        <label class="ms-1 custom-download-label">Загрузить</label>
                     </button>
                 </div>
             </div>
