@@ -4,7 +4,7 @@
         <!-- Информация о создателе картины -->
         <div class="row">
             <div class="col-md-6 col-6">
-                <div class="d-flex owner-info" @click="openOwnerURL">
+                <div class="d-flex owner-info" @click="openOwnerURL" v-if="photo.id">
                     <img :src="photo.user?.profile_image?.medium" alt="Owner's Photo" class="rounded border border-white border-1 mr-3" style="width: 40px; height: 40px;">
                     <div class="ms-2 d-flex flex-column align-items-start">
                         <h6 class="mb-0 text-white text-start">{{ photo.user?.name }}</h6>
@@ -26,7 +26,7 @@
         </div>
 
         <!-- Главное фото -->
-        <div class="mt-4">
+        <div class="mt-4" v-if="photo.id">
             <img :src="photo.urls?.regular" alt="Photo" class="img-fluid rounded">
         </div>
 
